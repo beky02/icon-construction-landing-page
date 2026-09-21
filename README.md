@@ -76,16 +76,20 @@ Two things were kept faithful even though they look like defects:
 
 ## Before this goes live
 
-The footer now carries the real office address, phone and email. Still
-placeholder, in `src/data/site.ts`:
+Copy, projects, map sites, impact figures and the footer contact block are all
+real company data now. Three things are still outstanding:
 
-- impact figures (`40+`, `12+`, `180+`, `25+`, `96+ KM`) — the page says so in
-  print, under the impact grid
-- project names, locations and statistics
-- every `Figure` renders a caption describing the photograph that belongs in
-  that slot; swap the drawn stand-in for an `<img>` inside the same wrapper and
-  it inherits the duotone treatment
-
-The "Start a Project" and "Contact" buttons currently link to `#contact`, which
-is the section they sit in — they need a real destination (a form, a `mailto:`,
-or a contact route).
+- **Photography.** Every section renders drawn stand-ins rather than photographs.
+  Each `Figure` carries a caption describing the shot that belongs in that slot
+  (`photo` in `src/data/site.ts`); drop an `<img>` inside the same wrapper and it
+  inherits the design system's duotone treatment.
+- **The call-to-action buttons go nowhere.** "Start a Project" and "Contact"
+  link to `#contact`, the section they already sit in. They need a real
+  destination — a form, a `mailto:`, or a contact route.
+- **Map pin placement.** `mapSites` coordinates are in the viewBox declared in
+  `src/data/ethiopia.ts`, not latitude/longitude. The map is roughly
+  equirectangular at ~67px per degree anchored on Addis Ababa at
+  `(390.5, 408.7)` = 38.74°E, 9.03°N, so a town at `(lon, lat)` lands near
+  `x = 390.5 + (lon - 38.74) × 67.2`, `y = 408.7 - (lat - 9.03) × 67.4`. Several
+  pins do not match that, and the labels collide now that every project sits in
+  one region.

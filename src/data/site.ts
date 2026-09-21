@@ -1,6 +1,6 @@
 /* All page copy lives here so the sections stay pure presentation.
-   Figures, names and contact details carry the placeholders the design was
-   reviewed with — replace them with verified company data before launch. */
+   Projects, map sites and impact figures are real company data. The `photo`
+   fields describe the photograph each slot is waiting for — see the README. */
 
 export interface Stat {
   value: string;
@@ -67,8 +67,8 @@ export const projects: Project[] = [
       { value: 'Full', label: 'Farm Setup' },
     ],
   },
-    {
-    id: 'baro-femele-bording-school',
+  {
+    id: 'baro-femele-boarding-school',
     name: 'Baro-Femele Boarding School',
     location: 'Ura worda, Benshangule state, Ethiopia',
     type: 'Education',
@@ -81,14 +81,14 @@ export const projects: Project[] = [
       { value: '18 MO', label: 'Delivery Time' },
     ],
   },
-    {
+  {
     id: 'assosa-corridor',
     name: 'Assosa And Banbasi Corridor Development',
     location: 'Assosa and Banbasi city, Ethiopia',
     type: 'Urban Infrastructure',
     status: 'Completed',
     photo: 'completed corridor at street level',
-    body: 'A full corridor rebuild combining carriageway, drainage, lighting, dedicated cycling infrastructure and continuous pedestrian walkways through one of the capital’s busiest districts.',
+    body: 'A full corridor rebuild combining carriageway, drainage, lighting, dedicated cycling infrastructure and continuous pedestrian walkways through the busiest districts of both towns.',
     stats: [
       { value: '5 KM', label: 'Corridor' },
       { value: '3 KM', label: 'Cycling Infrastructure' },
