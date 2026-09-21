@@ -22,7 +22,7 @@ export function SiteFooter() {
             <p className="siteFooter__text">
               Bole Sub-City, Woreda 03
               <br />
-              Helzer Building, Office 120
+              Hidmona Building, Office 120
               <br />
               Addis Ababa, Ethiopia
             </p>
