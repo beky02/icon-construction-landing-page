@@ -3,7 +3,6 @@ import { SiteNav } from './components/SiteNav';
 import { About } from './sections/About';
 import { Contact } from './sections/Contact';
 import { Footprint } from './sections/Footprint';
-import { Heritage } from './sections/Heritage';
 import { Hero } from './sections/Hero';
 import { Impact } from './sections/Impact';
 import { Projects } from './sections/Projects';
@@ -22,7 +21,6 @@ export default function App() {
         <Projects layout="side-by-side" />
         <Footprint />
         <Transformation />
-        <Heritage />
         <Impact />
         <Contact />
       </main>
