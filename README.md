@@ -90,6 +90,8 @@ real company data now. Three things are still outstanding:
   `src/data/ethiopia.ts`, not latitude/longitude. The map is roughly
   equirectangular at ~67px per degree anchored on Addis Ababa at
   `(390.5, 408.7)` = 38.74°E, 9.03°N, so a town at `(lon, lat)` lands near
-  `x = 390.5 + (lon - 38.74) × 67.2`, `y = 408.7 - (lat - 9.03) × 67.4`. Several
-  pins do not match that, and the labels collide now that every project sits in
-  one region.
+  `x = 390.5 + (lon - 38.74) × 67.2`, `y = 408.7 - (lat - 9.03) × 67.4`.
+
+  Assosa and Bambasi check out against that. **Ura Woreda, Baro and Buldigilu
+  have not been verified** — Ura Woreda in particular plots near 37.8°E, which
+  is east of Benishangul-Gumuz. Worth confirming against the actual sites.

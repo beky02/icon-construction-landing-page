@@ -450,7 +450,6 @@
     repeating-linear-gradient(0deg, var(--ink-045) 0 1px, transparent 1px 38px),
     repeating-linear-gradient(90deg, var(--ink-045) 0 1px, transparent 1px 38px);
 }
-.footprint__plot { position: relative; }
 .footprint__svg { width: 100%; height: auto; display: block; overflow: visible; }
 .footprint__country {
   fill: var(--forest-10);
@@ -458,9 +457,9 @@
   stroke-width: 2.5;
   stroke-linejoin: round;
 }
-/* Mouse affordance only — the city button beside each pin is the control
-   assistive tech and the keyboard see, so the marker is not a second
-   tab stop for the same action. */
+/* Mouse affordance only — the numbered key below is the control assistive
+   tech and the keyboard see, so a marker is never a second tab stop for an
+   action the key already offers. */
 .footprint__pin { cursor: pointer; }
 /* Invisible disc widening the hit area to something finger-sized. */
 .footprint__pinHit { fill: transparent; }
@@ -473,23 +472,65 @@
   fill: var(--color-accent); stroke: var(--color-accent-900); stroke-width: 1.5;
   transition: fill .2s ease;
 }
+/* Sized in viewBox units, so it scales with the map. 22 lands between 9px
+   and 15px of rendered type across every width the shell allows — small
+   enough not to shout, large enough to read at 1024 where the map column
+   is at its narrowest. */
+.footprint__pinNum {
+  font-family: var(--font-heading); font-weight: 600; font-size: 22px;
+  fill: var(--color-bg);
+  pointer-events: none;
+  transition: fill .2s ease;
+}
 .footprint__pin[data-active='true'] .footprint__pinRing { opacity: 1; }
 .footprint__pin[data-active='true'] .footprint__pinDot { fill: var(--color-accent-2); }
+.footprint__pin[data-active='true'] .footprint__pinNum { fill: var(--color-accent-900); }
 
-/* City names ride over the SVG, positioned from the same coordinates. */
-.footprint__label {
-  position: absolute;
-  transform: translate(14px, -50%);
-  background: transparent; border: 0; padding: 2px 4px;
-  cursor: pointer; white-space: nowrap;
-  font-family: var(--font-heading); font-weight: 600;
-  font-size: clamp(11px, 1.15vw, 15px);
-  letter-spacing: .08em; text-transform: uppercase;
-  color: var(--ink-60);
+/* The key doubles as the legend for the numbered markers and as the actual
+   project picker — every project is in one region and two share a town, so
+   labelling the markers in place could never stay legible. */
+.footprint__key {
+  list-style: none; margin: 18px 0 0; padding: 0;
+  border: 1px solid var(--ink-16);
+}
+.footprint__keyRow + .footprint__keyRow { border-top: 1px solid var(--ink-16); }
+.footprint__keyBtn {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 4px 14px;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-left: 2px solid transparent;
+  padding: 11px 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease;
+}
+.footprint__keyBtn:hover { background: var(--ink-045); }
+.footprint__keyBtn[aria-pressed='true'] {
+  background: var(--color-accent-100);
+  border-left-color: var(--color-accent-2);
+}
+.footprint__keyNum {
+  font-family: var(--font-heading); font-weight: 600; font-size: 13px;
+  letter-spacing: .06em;
+  color: var(--ink-55);
+  min-width: 14px;
   transition: color .2s ease;
 }
-.footprint__label:hover { color: var(--color-accent-700); }
-.footprint__label[aria-pressed="true"] { color: var(--color-text); }
+.footprint__keyBtn[aria-pressed='true'] .footprint__keyNum { color: var(--color-accent-2-700); }
+.footprint__keyName {
+  font-family: var(--font-heading); font-weight: 600; font-size: 16px;
+  text-transform: uppercase; letter-spacing: .03em; line-height: 1.15;
+}
+.footprint__keyCity {
+  font-family: var(--font-heading); font-size: 12px;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink-55);
+  white-space: nowrap;
+}
 
 .footprint__detail {
   position: relative;
@@ -782,4 +823,11 @@
   .siteNav__link { font-size: 13px; }
   /* The survey mark crowds the headline once the hero narrows. */
   .hero__survey { display: none; }
+}
+
+@media (max-width: 520px) {
+  /* The key's town column has nowhere left to go — drop it under the
+     project name rather than letting the name wrap to one word a line. */
+  .footprint__keyBtn { grid-template-columns: auto minmax(0, 1fr); }
+  .footprint__keyCity { grid-column: 2; white-space: normal; }
 }
