@@ -140,13 +140,8 @@ export const projects: Project[] = [
 ];
 
 export const mapSites: MapSite[] = [
-  { city: 'Ura Woreda', x: 327.5, y: 272.6, region: 'Benishangul-Gumuz Region', name: 'Halawa Agro Industry', type: 'Agro Industry', status: 'Completed', photo: 'livestock farm with cattle sheds, poultry units and feed stores, Ura Woreda' },
+  { city: 'Ura Woreda', x: 170.5, y: 330.6, region: 'Benishangul-Gumuz Region', name: 'Halawa Agro Industry', type: 'Agro Industry', status: 'Completed', photo: 'livestock farm with cattle sheds, poultry units and feed stores, Ura Woreda' },
   { city: 'Baro', x: 150.0, y: 305.0, region: 'Benishangul-Gumuz Region', name: 'Baro-Femele Boarding School', type: 'Education', status: 'Completed', photo: 'boarding school courtyard and residence blocks, Ura Woreda' },
-  // Assosa town is at 34.53°E, 10.07°N, which the projection in ethiopia.ts
-  // puts near (108, 339) — this pin was at (334.5, 330.5), roughly 3° of
-  // longitude east, rendering the hospital in central Ethiopia. Nudged a few
-  // units south-west of true Assosa so it does not sit under the Assosa
-  // corridor marker below, which is in the same town.
   { city: 'Assosa', x: 104.0, y: 346.0, region: 'Benishangul-Gumuz Region', name: 'Assosa Referral Hospital', type: 'Healthcare', status: 'In Progress', photo: 'referral hospital renewal and landscape works, Assosa' },
   { city: 'Buldigilu', x: 240.0, y: 290.0, region: 'Benishangul-Gumuz Region', name: 'Bulipli, Atsiliho and Janfrari Primary Schools', type: 'Education', status: 'Completed', photo: 'primary school blocks and classroom courtyards, Buldigilu' },
   { city: 'Assosa', x: 125.5, y: 327.0, region: 'Benishangul-Gumuz Region', name: 'Assosa Corridor Development', type: 'Urban Infrastructure', status: 'Completed', photo: 'completed corridor at street level, Assosa' },
