@@ -3,18 +3,18 @@ import { Corners } from '../components/Corners';
 import { Figure } from '../components/Figure';
 import { Kicker } from '../components/Kicker';
 import { ETHIOPIA_PATH, MAP_VIEW_BOX_ATTR } from '../data/ethiopia';
-import { mapSites } from '../data/site';
+import { mapMarkers, projects } from '../data/site';
 
 export function Footprint() {
-  const [activeSiteName, setActiveSiteName] = useState(mapSites[0].name);
-  const selected = mapSites.find((site) => site.name === activeSiteName) ?? mapSites[0];
+  const [activeId, setActiveId] = useState(projects[0].id);
+  const selected = projects.find((project) => project.id === activeId) ?? projects[0];
 
-  // Every project sits in Benishangul-Gumuz, and two of them are in Assosa
-  // itself, so markers overlap no matter how they are placed. Draw the
-  // selected one last and it always wins the stack.
-  const drawOrder = mapSites
-    .map((site, index) => ({ site, index }))
-    .sort((a, b) => Number(a.site.name === selected.name) - Number(b.site.name === selected.name));
+  // Every project is in Benishangul-Gumuz and three share Assosa town, so
+  // markers sit close together. Draw the selected project's markers last and
+  // they always win the stack.
+  const drawOrder = [...mapMarkers].sort(
+    (a, b) => Number(a.project.id === selected.id) - Number(b.project.id === selected.id),
+  );
 
   return (
     <section id="footprint" className="section">
@@ -37,19 +37,19 @@ export function Footprint() {
                   information in a form assistive tech can actually use. */}
               <svg className="footprint__svg" viewBox={MAP_VIEW_BOX_ATTR} aria-hidden="true">
                 <path className="footprint__country" d={ETHIOPIA_PATH} />
-                {drawOrder.map(({ site, index }) => (
+                {drawOrder.map(({ project, pin, number }) => (
                   <g
-                    key={site.name}
+                    key={`${project.id}-${pin.city}`}
                     className="footprint__pin"
-                    data-active={site.name === selected.name}
-                    transform={`translate(${site.x},${site.y})`}
-                    onClick={() => setActiveSiteName(site.name)}
+                    data-active={project.id === selected.id}
+                    transform={`translate(${pin.x},${pin.y})`}
+                    onClick={() => setActiveId(project.id)}
                   >
                     <circle className="footprint__pinHit" r={28} />
-                    <circle className="footprint__pinRing" r={site.name === selected.name ? 24 : 18} />
-                    <circle className="footprint__pinDot" r={site.name === selected.name ? 17 : 13} />
+                    <circle className="footprint__pinRing" r={project.id === selected.id ? 24 : 18} />
+                    <circle className="footprint__pinDot" r={project.id === selected.id ? 17 : 13} />
                     <text className="footprint__pinNum" textAnchor="middle" dy="0.34em">
-                      {index + 1}
+                      {number}
                     </text>
                   </g>
                 ))}
@@ -58,19 +58,21 @@ export function Footprint() {
             </div>
 
             <ol className="footprint__key">
-              {mapSites.map((site, index) => (
-                <li key={site.name} className="footprint__keyRow">
+              {projects.map((project, index) => (
+                <li key={project.id} className="footprint__keyRow">
                   <button
                     type="button"
                     className="footprint__keyBtn"
-                    aria-pressed={site.name === selected.name}
-                    onClick={() => setActiveSiteName(site.name)}
+                    aria-pressed={project.id === selected.id}
+                    onClick={() => setActiveId(project.id)}
                   >
                     <span className="footprint__keyNum" aria-hidden="true">
                       {index + 1}
                     </span>
-                    <span className="footprint__keyName">{site.name}</span>
-                    <span className="footprint__keyCity">{site.city}</span>
+                    <span className="footprint__keyName">{project.name}</span>
+                    <span className="footprint__keyCity">
+                      {project.pins.map((pin) => pin.city).join(' · ')}
+                    </span>
                   </button>
                 </li>
               ))}
@@ -82,7 +84,7 @@ export function Footprint() {
               <div className="figure__layer footprint__photoBlocks" />
             </Figure>
 
-            <div className="microLabel footprint__region">{selected.region}</div>
+            <div className="microLabel footprint__region">{selected.pins[0].region}</div>
             <h3 className="footprint__name">{selected.name}</h3>
 
             <div className="footprint__meta">

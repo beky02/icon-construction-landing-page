@@ -27,7 +27,7 @@ src/
     SiteFooter.tsx
   sections/             one file per band of the page, top to bottom
   data/
-    site.ts             all copy, projects, map sites, stats
+    site.ts             all copy, projects, stats — see "Projects" below
     ethiopia.ts         map outline + viewBox projection helper
   styles/
     design-system.css   vendored Industry design system — see below
@@ -37,6 +37,21 @@ src/
 
 Stylesheet order in `main.tsx` is load-bearing: the design system defines the
 tokens, the theme retunes them, the page styles consume the result.
+
+## Projects
+
+Sections 3 and 4 both show projects, and they read from one array in
+`src/data/site.ts` so they cannot drift apart:
+
+- **§3 "Featured projects"** — `featuredProjects`, the entries flagged
+  `featured: true`. The rich treatment: body copy and stat tiles. Keep this to
+  about three; the tab strip is built for one row and wraps raggedly past four.
+- **§4 "Our footprint"** — every project, on the map with a numbered key.
+
+A project's `pins` array places it on the map. Usually one; the Assosa–Banbasi
+corridor has two, so it contributes two markers that share its number and
+select the same project. To add a project, add one entry — it appears on the
+map automatically, and in §3 too if you flag it.
 
 ## The design system
 

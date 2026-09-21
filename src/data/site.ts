@@ -13,6 +13,16 @@ export interface Service {
   body: string;
 }
 
+/** Where a project pins on the map in §4. */
+export interface MapPin {
+  city: string;
+  region: string;
+  /** Position in the map viewBox declared in ethiopia.ts — NOT lat/long.
+   *  The README carries the conversion. */
+  x: number;
+  y: number;
+}
+
 export interface Project {
   /** Stable key — the array index is not one once projects are reordered. */
   id: string;
@@ -24,18 +34,12 @@ export interface Project {
   photo: string;
   body: string;
   stats: Stat[];
-}
-
-export interface MapSite {
-  city: string;
-  /** Position in the map viewBox declared in ethiopia.ts. */
-  x: number;
-  y: number;
-  region: string;
-  name: string;
-  type: string;
-  status: string;
-  photo: string;
+  /** Carried in the featured tab strip in §3. Keep this to about three: the
+   *  strip is built to sit on one row, and wraps raggedly past four. */
+  featured: boolean;
+  /** Usually one. More when the work spans towns, as the Assosa–Banbasi
+   *  corridor does — every pin selects the same project. */
+  pins: MapPin[];
 }
 
 export interface Theme {
@@ -66,6 +70,8 @@ export const projects: Project[] = [
       { value: 'Multi', label: 'Livestock Types' },
       { value: 'Full', label: 'Farm Setup' },
     ],
+    featured: false,
+    pins: [{ city: 'Ura Woreda', region: 'Benishangul-Gumuz Region', x: 170.5, y: 330.6 }],
   },
   {
     id: 'baro-femele-boarding-school',
@@ -80,6 +86,10 @@ export const projects: Project[] = [
       { value: '480', label: 'Boarding Students' },
       { value: '18 MO', label: 'Delivery Time' },
     ],
+    featured: false,
+    // NOTE: `location` above says Ura Woreda, but this pin says Baro. The two
+    // arrays this file replaced disagreed the same way. One of them is wrong.
+    pins: [{ city: 'Baro', region: 'Benishangul-Gumuz Region', x: 150.0, y: 305.0 }],
   },
   {
     id: 'assosa-corridor',
@@ -93,6 +103,12 @@ export const projects: Project[] = [
       { value: '5 KM', label: 'Corridor' },
       { value: '3 KM', label: 'Cycling Infrastructure' },
       { value: '5 KM', label: 'Pedestrian Walkways' },
+    ],
+    featured: true,
+    // One project, two towns — both markers carry its number and select it.
+    pins: [
+      { city: 'Assosa', region: 'Benishangul-Gumuz Region', x: 125.5, y: 327.0 },
+      { city: 'Banbasi', region: 'Benishangul-Gumuz Region', x: 155.5, y: 362.6 },
     ],
   },
   {
@@ -108,6 +124,10 @@ export const projects: Project[] = [
       { value: '3', label: 'New Block' },
       { value: 'Green', label: 'Landscape Upgrade' },
     ],
+    featured: true,
+    // Three projects share Assosa town. True Assosa is ~(108, 339); these
+    // three are spread around it so all three markers stay separable.
+    pins: [{ city: 'Assosa', region: 'Benishangul-Gumuz Region', x: 110.0, y: 352.0 }],
   },
   {
     id: 'bulipli-atsiliho-janfrari-primary-schools',
@@ -122,6 +142,8 @@ export const projects: Project[] = [
       { value: '25', label: 'Classrooms' },
       { value: '450', label: 'Students Served' },
     ],
+    featured: true,
+    pins: [{ city: 'Buldigilu', region: 'Benishangul-Gumuz Region', x: 240.0, y: 290.0 }],
   },
   {
     id: 'assosa-recreation-centre',
@@ -136,18 +158,20 @@ export const projects: Project[] = [
       { value: 'Cafe', label: 'Food & Beverage' },
       { value: 'Green', label: 'Public Space' },
     ],
+    featured: false,
+    // Had no marker at all before the two arrays were merged.
+    pins: [{ city: 'Assosa', region: 'Benishangul-Gumuz Region', x: 97.0, y: 328.0 }],
   },
 ];
 
-export const mapSites: MapSite[] = [
-  { city: 'Ura Woreda', x: 170.5, y: 330.6, region: 'Benishangul-Gumuz Region', name: 'Halawa Agro Industry', type: 'Agro Industry', status: 'Completed', photo: 'livestock farm with cattle sheds, poultry units and feed stores, Ura Woreda' },
-  { city: 'Baro', x: 150.0, y: 305.0, region: 'Benishangul-Gumuz Region', name: 'Baro-Femele Boarding School', type: 'Education', status: 'Completed', photo: 'boarding school courtyard and residence blocks, Ura Woreda' },
-  { city: 'Assosa', x: 104.0, y: 346.0, region: 'Benishangul-Gumuz Region', name: 'Assosa Referral Hospital', type: 'Healthcare', status: 'In Progress', photo: 'referral hospital renewal and landscape works, Assosa' },
-  { city: 'Buldigilu', x: 240.0, y: 290.0, region: 'Benishangul-Gumuz Region', name: 'Bulipli, Atsiliho and Janfrari Primary Schools', type: 'Education', status: 'Completed', photo: 'primary school blocks and classroom courtyards, Buldigilu' },
-  { city: 'Assosa', x: 125.5, y: 327.0, region: 'Benishangul-Gumuz Region', name: 'Assosa Corridor Development', type: 'Urban Infrastructure', status: 'Completed', photo: 'completed corridor at street level, Assosa' },
-  { city: 'Banbasi', x: 155.5, y: 362.6, region: 'Benishangul-Gumuz Region', name: 'Banbasi Corridor Development', type: 'Urban Infrastructure', status: 'Completed', photo: 'completed corridor at street level, Banbasi' },
+/** §3 shows only these. Flip `featured` above to change the line-up. */
+export const featuredProjects = projects.filter((project) => project.featured);
 
-];
+/** §4 maps every project. A project with two pins contributes two markers,
+ *  both numbered for it, so selecting either selects the project. */
+export const mapMarkers = projects.flatMap((project, index) =>
+  project.pins.map((pin) => ({ project, pin, number: index + 1 })),
+);
 
 export const themes: Theme[] = [
   { title: 'Better Streets', body: 'Carriageways rebuilt with drainage, lighting and clear lane discipline.' },

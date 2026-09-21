@@ -3,7 +3,7 @@ import type { KeyboardEvent } from 'react';
 import { Corners } from '../components/Corners';
 import { Figure } from '../components/Figure';
 import { Kicker } from '../components/Kicker';
-import { projects } from '../data/site';
+import { featuredProjects as projects } from '../data/site';
 
 /** Mirrors the `featuredLayout` prop the design exposes to its editor. */
 export type FeaturedLayout = 'side-by-side' | 'stacked';
