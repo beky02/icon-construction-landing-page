@@ -22,7 +22,7 @@ export default function App() {
         <Projects layout="side-by-side" />
         <Footprint />
         <Transformation />
-        {/* <Heritage /> */}
+        <Heritage />
         <Impact />
         <Contact />
       </main>
