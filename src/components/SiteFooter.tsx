@@ -35,8 +35,8 @@ export function SiteFooter() {
                 +251 911 394757
               </a>
               <br />
-              <a className="siteFooter__link" href="mailto:iconconstruction@gmail.com">
-                iconconstruction@gmail.com
+              <a className="siteFooter__link" href="mailto:iconconstructionworks@gmail.com">
+                iconconstructionworks@gmail.com
               </a>
             </p>
           </div>

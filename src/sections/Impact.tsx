@@ -15,11 +15,6 @@ export function Impact() {
             </div>
           ))}
         </div>
-
-        <p className="impact__note">
-          Example figures shown for layout. Replace with verified company
-          statistics before publication.
-        </p>
       </div>
     </section>
   );
