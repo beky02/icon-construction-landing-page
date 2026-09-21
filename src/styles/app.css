@@ -754,8 +754,9 @@
 .siteFooter__link:hover { color: var(--color-bg); }
 .siteFooter__bottom {
   display: flex; flex-wrap: wrap; gap: 10px 28px;
-  justify-content: space-between;
+  justify-content: center;
   padding-top: 20px; font-size: 12px; letter-spacing: .06em;
+
 }
 
 /* ═══════════════════════════════════════════════════════════════════════

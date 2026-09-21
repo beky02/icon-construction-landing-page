@@ -55,9 +55,7 @@ export function SiteFooter() {
 
         <div className="siteFooter__bottom">
           <span>© 2026 Icon Construction PLC</span>
-          <span>
-            Project names and figures on this page are placeholders for review.
-          </span>
+          
         </div>
       </div>
     </footer>
