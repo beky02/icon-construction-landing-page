@@ -1,0 +1,123 @@
+/* Icon Construction — brand theme.
+   Retunes the Industry design system from its stock steel-blue to the
+   brand's forest-green / brass pairing. Loaded after design-system.css so
+   these win; every rule below is a token override, never a new component. */
+
+:root {
+  --color-bg: #f4f2ee;
+  --color-surface: #eae7e1;
+  /* One step down from the surface — the services grid's hover cell. */
+  --color-surface-pressed: #e0dcd3;
+  --color-text: #1d1f20;
+  --color-accent: #2f6b4f;
+  --color-accent-2: #c9963a;
+  --color-divider: color-mix(in srgb, #1d1f20 18%, transparent);
+
+  --color-accent-100: #eaf3ee;
+  --color-accent-200: #cde4d8;
+  --color-accent-300: #a6cdb8;
+  --color-accent-400: #74ac92;
+  --color-accent-500: #4a8a6c;
+  --color-accent-600: #2f6b4f;
+  --color-accent-700: #23523d;
+  --color-accent-800: #1a3c2d;
+  --color-accent-900: #11281e;
+
+  --color-accent-2-100: #fbf3e2;
+  --color-accent-2-200: #f5e3bd;
+  --color-accent-2-300: #ecce90;
+  --color-accent-2-400: #dfb35f;
+  --color-accent-2-500: #c9963a;
+  --color-accent-2-600: #a87a28;
+  --color-accent-2-700: #85601f;
+  --color-accent-2-800: #614518;
+  --color-accent-2-900: #3f2c10;
+
+  /* One step below accent-900 — the footer ground and the dark end of the
+     hero / featured-project gradients. The ramp stops at 900, so it lives
+     here rather than pretending to be a generated step. */
+  --color-accent-950: #0d2018;
+
+  /* Reversed paper. The ramps cover opaque fills; these cover the type,
+     hairlines and drafting grids that sit *on* the dark grounds. */
+  --paper-92: color-mix(in srgb, var(--color-bg) 92%, transparent);
+  --paper-90: color-mix(in srgb, var(--color-bg) 90%, transparent);
+  --paper-86: color-mix(in srgb, var(--color-bg) 86%, transparent);
+  --paper-84: color-mix(in srgb, var(--color-bg) 84%, transparent);
+  --paper-78: color-mix(in srgb, var(--color-bg) 78%, transparent);
+  --paper-72: color-mix(in srgb, var(--color-bg) 72%, transparent);
+  --paper-70: color-mix(in srgb, var(--color-bg) 70%, transparent);
+  --paper-62: color-mix(in srgb, var(--color-bg) 62%, transparent);
+  --paper-60: color-mix(in srgb, var(--color-bg) 60%, transparent);
+  --paper-55: color-mix(in srgb, var(--color-bg) 55%, transparent);
+  --paper-50: color-mix(in srgb, var(--color-bg) 50%, transparent);
+  --paper-45: color-mix(in srgb, var(--color-bg) 45%, transparent);
+  --paper-35: color-mix(in srgb, var(--color-bg) 35%, transparent);
+  --paper-30: color-mix(in srgb, var(--color-bg) 30%, transparent);
+  --paper-22: color-mix(in srgb, var(--color-bg) 22%, transparent);
+  --paper-20: color-mix(in srgb, var(--color-bg) 20%, transparent);
+  --paper-18: color-mix(in srgb, var(--color-bg) 18%, transparent);
+  --paper-16: color-mix(in srgb, var(--color-bg) 16%, transparent);
+  --paper-10: color-mix(in srgb, var(--color-bg) 10%, transparent);
+  --paper-08: color-mix(in srgb, var(--color-bg) 8%, transparent);
+  --paper-07: color-mix(in srgb, var(--color-bg) 7%, transparent);
+  --paper-06: color-mix(in srgb, var(--color-bg) 6%, transparent);
+
+  /* Ink at the weights the page rules and sets body copy at. */
+  --ink-78: color-mix(in srgb, var(--color-text) 78%, transparent);
+  --ink-72: color-mix(in srgb, var(--color-text) 72%, transparent);
+  --ink-70: color-mix(in srgb, var(--color-text) 70%, transparent);
+  --ink-60: color-mix(in srgb, var(--color-text) 60%, transparent);
+  --ink-55: color-mix(in srgb, var(--color-text) 55%, transparent);
+  --ink-22: color-mix(in srgb, var(--color-text) 22%, transparent);
+  --ink-16: color-mix(in srgb, var(--color-text) 16%, transparent);
+  --ink-14: color-mix(in srgb, var(--color-text) 14%, transparent);
+  --ink-10: color-mix(in srgb, var(--color-text) 10%, transparent);
+  --ink-07: color-mix(in srgb, var(--color-text) 7%, transparent);
+  --ink-06: color-mix(in srgb, var(--color-text) 6%, transparent);
+  --ink-045: color-mix(in srgb, var(--color-text) 4.5%, transparent);
+
+  /* Brass — the drafting hairlines and survey marks on the dark grounds. */
+  --brass-85: color-mix(in srgb, var(--color-accent-2) 85%, transparent);
+  --brass-80: color-mix(in srgb, var(--color-accent-2) 80%, transparent);
+  --brass-75: color-mix(in srgb, var(--color-accent-2) 75%, transparent);
+  --brass-42: color-mix(in srgb, var(--color-accent-2) 42%, transparent);
+  --brass-30: color-mix(in srgb, var(--color-accent-2) 30%, transparent);
+  --brass-28: color-mix(in srgb, var(--color-accent-2) 28%, transparent);
+  --brass-18: color-mix(in srgb, var(--color-accent-2) 18%, transparent);
+  --brass-14: color-mix(in srgb, var(--color-accent-2) 14%, transparent);
+  --brass-12: color-mix(in srgb, var(--color-accent-2) 12%, transparent);
+  --brass-09: color-mix(in srgb, var(--color-accent-2) 9%, transparent);
+  --brass-08: color-mix(in srgb, var(--color-accent-2) 8%, transparent);
+
+  /* Green at the weights the hero wash and the leaf tint use. */
+  --forest-55: color-mix(in srgb, var(--color-accent) 55%, transparent);
+  --forest-50: color-mix(in srgb, var(--color-accent) 50%, transparent);
+  --forest-45: color-mix(in srgb, var(--color-accent) 45%, transparent);
+  --forest-12: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  --forest-10: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  --forest-08: color-mix(in srgb, var(--color-accent) 8%, transparent);
+
+  /* Page rhythm. */
+  --shell: 1280px;
+  --gutter: clamp(20px, 5vw, 64px);
+  --section-y: clamp(64px, 8vw, 120px);
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+a { color: var(--color-accent-700); }
+a:hover { color: var(--color-accent); }
+
+/* The brand ramp puts accent-600 exactly on the base accent, so the design
+   system's stock `.btn-primary:hover` lands on the same green it started
+   from and the button reads as dead. Step to 700/800 instead — still "one
+   step past the base", just measured on this ramp. */
+.btn-primary:hover { background: var(--color-accent-700); }
+.btn-primary:active { background: var(--color-accent-800); }
