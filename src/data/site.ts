@@ -123,17 +123,30 @@ export const projects: Project[] = [
       { value: '450', label: 'Students Served' },
     ],
   },
+  {
+    id: 'assosa-recreation-centre',
+    name: 'Assosa Recreation Centre',
+    location: 'Assosa, Benishangul-Gumuz',
+    type: 'Public Space',
+    status: 'Completed',
+    photo: 'water fountain, restaurant and landscaped public recreation area',
+    body: 'A public recreation complex featuring a central water fountain, café and restaurant building, retail shop structures and extensive green areas designed to create a welcoming civic destination for residents and visitors.',
+    stats: [
+      { value: 'Fountain', label: 'Water Feature' },
+      { value: 'Cafe', label: 'Food & Beverage' },
+      { value: 'Green', label: 'Public Space' },
+    ],
+  },
 ];
 
 export const mapSites: MapSite[] = [
-  { city: 'Baro', x: 327.5, y: 272.6, region: 'Baro Area', name: 'Baro Agro Industry', type: 'Agro Industry', status: 'Completed', photo: 'livestock farm and poultry units, Baro' },
-  { city: 'Addis Ababa', x: 390.5, y: 408.7, region: 'Addis Ababa City Administration', name: 'Bole Corridor Development', type: 'Urban Infrastructure', status: 'Completed', photo: 'corridor at street level, Addis Ababa' },
-  { city: 'Assosa', x: 330.0, y: 330.0, region: 'Benishangul-Gumuz Region', name: 'Assosa Referral Hospital', type: 'Healthcare', status: 'In Progress', photo: 'referral hospital renewal and landscape works, Assosa' },
-  { city: 'Bahir Dar', x: 299.1, y: 233.1, region: 'Amhara Region', name: 'Bahir Dar Secondary School', type: 'Education', status: 'Completed', photo: 'completed school block, Bahir Dar' },
-  { city: 'Mekelle', x: 439.6, y: 101.7, region: 'Tigray Region', name: 'Mekelle Access Roads', type: 'Roads & Corridors', status: 'In Progress', photo: 'access road works, Mekelle' },
-  { city: 'Hawassa', x: 372.3, y: 542.8, region: 'Sidama Region', name: 'Hawassa Lakeside Walkway', type: 'Walking & Cycling', status: 'Completed', photo: 'lakeside walkway in use, Hawassa' },
-  { city: 'Dire Dawa', x: 600.8, y: 370.3, region: 'Dire Dawa Administration', name: 'Dire Dawa Civil Works', type: 'Civil & Building Works', status: 'Completed', photo: 'civil works site, Dire Dawa' },
-  { city: 'Jimma', x: 261.5, y: 501.7, region: 'Oromia Region', name: 'Jimma Market Upgrade', type: 'Urban Infrastructure', status: 'Planned', photo: 'market area before works, Jimma' },
+  { city: 'Ura Woreda', x: 327.5, y: 272.6, region: 'Benishangul-Gumuz Region', name: 'Halawa Agro Industry', type: 'Agro Industry', status: 'Completed', photo: 'livestock farm with cattle sheds, poultry units and feed stores, Ura Woreda' },
+  { city: 'Baro', x: 150.0, y: 305.0, region: 'Benishangul-Gumuz Region', name: 'Baro-Femele Boarding School', type: 'Education', status: 'Completed', photo: 'boarding school courtyard and residence blocks, Ura Woreda' },
+  { city: 'Assosa', x: 334.5, y: 330.5, region: 'Benishangul-Gumuz Region', name: 'Assosa Referral Hospital', type: 'Healthcare', status: 'In Progress', photo: 'referral hospital renewal and landscape works, Assosa' },
+  { city: 'Buldigilu', x: 240.0, y: 290.0, region: 'Benishangul-Gumuz Region', name: 'Bulipli, Atsiliho and Janfrari Primary Schools', type: 'Education', status: 'Completed', photo: 'primary school blocks and classroom courtyards, Buldigilu' },
+  { city: 'Assosa', x: 125.5, y: 327.0, region: 'Benishangul-Gumuz Region', name: 'Assosa Corridor Development', type: 'Urban Infrastructure', status: 'Completed', photo: 'completed corridor at street level, Assosa' },
+  { city: 'Banbasi', x: 155.5, y: 362.6, region: 'Benishangul-Gumuz Region', name: 'Banbasi Corridor Development', type: 'Urban Infrastructure', status: 'Completed', photo: 'completed corridor at street level, Banbasi' },
+
 ];
 
 export const themes: Theme[] = [

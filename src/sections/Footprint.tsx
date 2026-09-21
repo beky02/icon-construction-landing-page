@@ -6,8 +6,8 @@ import { ETHIOPIA_PATH, MAP_VIEW_BOX_ATTR, projectToPercent } from '../data/ethi
 import { mapSites } from '../data/site';
 
 export function Footprint() {
-  const [activeCity, setActiveCity] = useState(mapSites[0].city);
-  const selected = mapSites.find((site) => site.city === activeCity) ?? mapSites[0];
+  const [activeSiteName, setActiveSiteName] = useState(mapSites[0].name);
+  const selected = mapSites.find((site) => site.name === activeSiteName) ?? mapSites[0];
 
   return (
     <section id="footprint" className="section">
@@ -29,14 +29,14 @@ export function Footprint() {
               <svg className="footprint__svg" viewBox={MAP_VIEW_BOX_ATTR} role="presentation">
                 <path className="footprint__country" d={ETHIOPIA_PATH} />
                 {mapSites.map((site) => {
-                  const active = site.city === selected.city;
+                  const active = site.name === selected.name;
                   return (
                     <g
-                      key={site.city}
+                      key={site.name}
                       className="footprint__pin"
                       data-active={active}
                       transform={`translate(${site.x},${site.y})`}
-                      onClick={() => setActiveCity(site.city)}
+                      onClick={() => setActiveSiteName(site.name)}
                     >
                       <circle className="footprint__pinHit" r={26} />
                       <circle className="footprint__pinRing" r={active ? 20 : 14} />
@@ -49,15 +49,15 @@ export function Footprint() {
               {/* City names ride above the SVG rather than inside it, so they
                   stay at a readable size instead of scaling with the map. */}
               {mapSites.map((site) => {
-                const active = site.city === selected.city;
+                const active = site.name === selected.name;
                 return (
                   <button
-                    key={site.city}
+                    key={site.name}
                     type="button"
                     className="footprint__label"
                     style={projectToPercent(site.x, site.y)}
                     aria-pressed={active}
-                    onClick={() => setActiveCity(site.city)}
+                    onClick={() => setActiveSiteName(site.name)}
                   >
                     {site.city}
                   </button>
