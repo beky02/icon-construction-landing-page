@@ -76,13 +76,12 @@ Two things were kept faithful even though they look like defects:
 
 ## Before this goes live
 
-The page carries the placeholders the design was reviewed with. Replace in
-`src/data/site.ts` and `src/components/SiteFooter.tsx`:
+The footer now carries the real office address, phone and email. Still
+placeholder, in `src/data/site.ts`:
 
 - impact figures (`40+`, `12+`, `180+`, `25+`, `96+ KM`) — the page says so in
   print, under the impact grid
 - project names, locations and statistics
-- the office address, phone numbers and `@iconconstruction.example` emails
 - every `Figure` renders a caption describing the photograph that belongs in
   that slot; swap the drawn stand-in for an `<img>` inside the same wrapper and
   it inherits the duotone treatment

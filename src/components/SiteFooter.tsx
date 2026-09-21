@@ -20,22 +20,24 @@ export function SiteFooter() {
           <div>
             <div className="microLabel siteFooter__head">Office</div>
             <p className="siteFooter__text">
-              Example: Bole Sub-City, Woreda 03
+              Bole Sub-City, Woreda 03
+              <br />
+              Helzer Building, Office 120
               <br />
               Addis Ababa, Ethiopia
-              <br />
-              P.O. Box 00000
             </p>
           </div>
 
           <div>
             <div className="microLabel siteFooter__head">Contact</div>
             <p className="siteFooter__text">
-              Example: +251 11 000 0000
+              <a className="siteFooter__link" href="tel:+251911394757">
+                +251 911 394757
+              </a>
               <br />
-              info@iconconstruction.example
-              <br />
-              tenders@iconconstruction.example
+              <a className="siteFooter__link" href="mailto:iconconstruction@gmail.com">
+                iconconstruction@gmail.com
+              </a>
             </p>
           </div>
 
@@ -54,8 +56,7 @@ export function SiteFooter() {
         <div className="siteFooter__bottom">
           <span>© 2026 Icon Construction PLC</span>
           <span>
-            Project names, figures and contact details on this page are
-            placeholders for review.
+            Project names and figures on this page are placeholders for review.
           </span>
         </div>
       </div>
