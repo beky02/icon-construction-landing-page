@@ -74,7 +74,7 @@ export function Projects({ layout = 'side-by-side' }: ProjectsProps) {
               : 'projects__featured'
           }
         >
-          <Figure className="projects__figure" caption={active.photo}>
+          <Figure className="projects__figure" caption={active.photo} src={active.image}>
             <div className="figure__layer projects__slope" />
             <div className="figure__layer projects__centreline" />
             <div className="projects__sky" />

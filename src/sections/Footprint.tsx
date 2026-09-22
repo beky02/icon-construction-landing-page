@@ -78,7 +78,12 @@ export function Footprint() {
           </div>
 
           <div className="blueprint footprint__detail">
-            <Figure className="footprint__photo" caption={selected.photo} framed={false}>
+            <Figure
+              className="footprint__photo"
+              caption={selected.photo}
+              src={selected.image}
+              framed={false}
+            >
               <div className="figure__layer footprint__photoBlocks" />
             </Figure>
 

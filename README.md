@@ -94,10 +94,16 @@ Two things were kept faithful even though they look like defects:
 Copy, projects, map sites, impact figures and the footer contact block are all
 real company data now. Three things are still outstanding:
 
-- **Photography.** Every section renders drawn stand-ins rather than photographs.
-  Each `Figure` carries a caption describing the shot that belongs in that slot
-  (`photo` in `src/data/site.ts`); drop an `<img>` inside the same wrapper and it
-  inherits the design system's duotone treatment.
+- **Photography is stand-in stock, not Icon Construction's own work.** Ten
+  free-licensed photographs sit in `public/images/`; `public/images/CREDITS.md`
+  records where each came from and which are least convincing. Replace a file in
+  place, keeping its name, and nothing in the code changes.
+
+  A slot takes its picture from `image` in `src/data/site.ts`. Delete that line
+  and the drawn stand-in comes back, so the page never has to be all-or-nothing
+  about photography — fill slots as shoots happen. Every photograph is duotoned
+  into the brand green by the design system, so composition matters far more
+  than the original's colour.
 - **The call-to-action buttons go nowhere.** "Start a Project" and "Contact"
   link to `#contact`, the section they already sit in. They need a real
   destination — a form, a `mailto:`, or a contact route.

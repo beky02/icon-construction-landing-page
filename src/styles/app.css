@@ -251,6 +251,16 @@
    rule to let the marks sit proud of the frame instead. */
 .figure.duotone { overflow: hidden; }
 
+/* Fills the figure's aspect-ratio box whatever the photograph's own
+   proportions are, so a slot never reflows when a picture lands in it. The
+   duotone overlay sits above this and tints it. */
+.figure__img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .figure__layer { position: absolute; inset: 0; }
 .figure__caption {
   position: absolute; left: 12px; bottom: 12px;

@@ -29,6 +29,9 @@ export interface MapPin {
   label?: string;
   /** Photograph for this site. Defaults to the project's. */
   photo?: string;
+  /** Picture for this site. Defaults to the project's; leave both off and
+   *  the drawn stand-in shows. */
+  image?: string;
 }
 
 export interface Project {
@@ -40,6 +43,9 @@ export interface Project {
   status: string;
   /** What the photograph in this slot should show, once shot. */
   photo: string;
+  /** Path to the picture, e.g. "/images/projects/assosa-corridor.jpg".
+   *  Omit it until there is one — the drawn stand-in covers the gap. */
+  image?: string;
   body: string;
   stats: Stat[];
   /** Carried in the featured tab strip in §3. Keep this to about three: the
@@ -88,6 +94,41 @@ export const services: Service[] = [
   },
 ];
 
+export interface AboutCard {
+  /** Matches the drawn stand-in defined in sections/About.tsx. */
+  id: "people" | "communities" | "progress";
+  title: string;
+  body: string;
+  /** What the photograph in this slot should show, once shot. */
+  photo: string;
+  /** Path to the picture. Omit until there is one. */
+  image?: string;
+}
+
+export const aboutCards: AboutCard[] = [
+  {
+    id: "people",
+    title: "People",
+    body: "Infrastructure that improves everyday life.",
+    photo: "daily life on a completed corridor",
+    image: "/images/about/people.jpg",
+  },
+  {
+    id: "communities",
+    title: "Communities",
+    body: "Schools, healthcare facilities, roads, and public spaces that connect communities.",
+    photo: "school or health centre in use",
+    image: "/images/about/communities.jpg",
+  },
+  {
+    id: "progress",
+    title: "Progress",
+    body: "Infrastructure supporting Ethiopia's continued urban and economic development.",
+    photo: "new road heading into a growing city",
+    image: "/images/about/progress.jpg",
+  },
+];
+
 export const projects: Project[] = [
   {
     id: "assosa-corridor",
@@ -96,6 +137,7 @@ export const projects: Project[] = [
     type: "Urban Infrastructure",
     status: "Completed",
     photo: "completed corridor at street level",
+    image: "/images/projects/assosa-corridor.jpg",
     body: "A full corridor rebuild combining carriageway, drainage, lighting, dedicated cycling infrastructure and continuous pedestrian walkways through the busiest districts of both towns.",
     stats: [
       { value: "5 KM", label: "Corridor" },
@@ -130,6 +172,7 @@ export const projects: Project[] = [
     type: "Agro Industry",
     status: "Completed",
     photo: "livestock farm with cattle sheds, poultry units and feed stores",
+    image: "/images/projects/halawa-agro-industry.jpg",
     body: "A comprehensive animal production farm including cattle fattening and dairy houses, calf and sheep shelters, poultry units, feed stores, egg storage, fencing, gate works and site-leveling with road adjustments for the full operational layout.",
     stats: [
       { value: "13", label: "Facility Units" },
@@ -153,6 +196,7 @@ export const projects: Project[] = [
     type: "Education",
     status: "Completed",
     photo: "school courtyard during a class change",
+    image: "/images/projects/baro-femele-boarding-school.jpg",
     body: "A purpose-built boarding school with residence blocks, classrooms, sanitation and recreation spaces designed to support secure, high-quality student living and learning.",
     stats: [
       { value: "12", label: "Classrooms" },
@@ -174,6 +218,7 @@ export const projects: Project[] = [
     type: "Healthcare",
     status: "In Progress",
     photo: "referral hospital blocks, landscape and green areas",
+    image: "/images/projects/assosa-referral-hospital.jpg",
     body: "A major hospital renewal and expansion project involving the refurbishment of 16 existing blocks, construction of one additional block, and the creation of green areas and plantation works to improve the clinical environment and public amenity.",
     stats: [
       { value: "21", label: "Blocks Renewed" },
@@ -201,6 +246,7 @@ export const projects: Project[] = [
         y: 366.0,
         label: "Benshangul-Gumuz Health Bureau",
         photo: "health bureau building and forecourt",
+        image: "/images/projects/benshangul-gumuz-health-bureau.jpg",
       },
     ],
   },
@@ -211,6 +257,7 @@ export const projects: Project[] = [
     type: "Education",
     status: "Completed",
     photo: "primary school blocks and classroom courtyards",
+    image: "/images/projects/bulipli-atsiliho-janfrari-primary-schools.jpg",
     body: "A combined primary school package comprising five classroom blocks, each accommodating five classrooms and five latrine units, designed to serve local students with safe, functional learning spaces and sanitation facilities.",
     stats: [
       { value: "5", label: "Blocks" },
@@ -234,6 +281,7 @@ export const projects: Project[] = [
     type: "Public Space",
     status: "Completed",
     photo: "water fountain, restaurant and landscaped public recreation area",
+    image: "/images/projects/assosa-recreation-centre.jpg",
     body: "A public recreation complex featuring a central water fountain, café and restaurant building, retail shop structures and extensive green areas designed to create a welcoming civic destination for residents and visitors.",
     stats: [
       { value: "Fountain", label: "Water Feature" },
@@ -270,6 +318,7 @@ export interface MapMarker {
   pin: MapPin;
   name: string;
   photo: string;
+  image?: string;
 }
 
 export const mapMarkers: MapMarker[] = projects
@@ -280,6 +329,7 @@ export const mapMarkers: MapMarker[] = projects
       pin,
       name: pin.label ?? project.name,
       photo: pin.photo ?? project.photo,
+      image: pin.image ?? project.image,
     })),
   )
   .map((marker, index) => ({ ...marker, number: index + 1 }));
