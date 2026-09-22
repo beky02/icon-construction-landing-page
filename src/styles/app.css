@@ -586,6 +586,18 @@
     repeating-linear-gradient(0deg, var(--ink-06) 0 1px, transparent 1px 30px),
     linear-gradient(180deg, var(--color-neutral-400), var(--color-neutral-600));
 }
+/* Both sides are sized to the whole viewport so the wipe lines up. These
+   are deliberately NOT duotoned, unlike every other photograph on the page:
+   the difference between the two shots is the content here, and washing
+   both in the same green would flatten the very thing the slider exists to
+   show. Add `duotone` to .compare__viewport to bring it in line. */
+.compare__img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .compare__beforeMass {
   position: absolute; inset: 0;
   clip-path: polygon(42% 12%, 58% 12%, 100% 100%, 0% 100%);
@@ -595,6 +607,9 @@
   position: absolute; top: 14px;
   font-family: var(--font-heading); font-size: 12px;
   letter-spacing: .2em; text-transform: uppercase;
+  /* These sit over whatever photograph is loaded, which could be bright sky
+     or dark tarmac — the shadow keeps them readable either way. */
+  text-shadow: 0 1px 4px color-mix(in srgb, var(--color-accent-950) 70%, transparent);
 }
 .compare__tag--before { right: 16px; color: var(--ink-70); }
 .compare__tag--after { left: 16px; color: var(--color-accent-2-400); }

@@ -1,11 +1,38 @@
 import { useState } from 'react';
-import type { CSSProperties } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import { Corners } from '../components/Corners';
 import { Kicker } from '../components/Kicker';
-import { themes } from '../data/site';
+import { themes, transformation } from '../data/site';
+
+/** One side of the wipe. Shows the photograph if there is one and it loads,
+ *  and the drawn stand-in otherwise — so a missing or mistyped file leaves
+ *  the section looking deliberate instead of showing a broken image. */
+function CompareLayer({
+  image,
+  alt,
+  children,
+}: {
+  image?: string;
+  alt: string;
+  children: ReactNode;
+}) {
+  const [failed, setFailed] = useState(false);
+
+  if (!image || failed) return <>{children}</>;
+
+  return (
+    <img
+      className="compare__img"
+      src={image}
+      alt={alt}
+      onError={() => setFailed(true)}
+    />
+  );
+}
 
 export function Transformation() {
   const [compare, setCompare] = useState(52);
+  const { before, after } = transformation;
 
   // Fed to the stylesheet rather than applied element by element, so the
   // clip and the handle can never disagree about where the wipe sits.
@@ -34,13 +61,22 @@ export function Transformation() {
 
         <div className="blueprint compare">
           <div className="compare__viewport" style={wipe}>
-            <div className="compare__beforeMass" />
+            <CompareLayer image={before.image} alt={before.alt}>
+              <div className="compare__beforeMass" />
+            </CompareLayer>
             <span className="compare__tag compare__tag--before">Before</span>
 
+            {/* Clipped from the right. Its picture is sized to the whole
+                viewport, not to the visible sliver, so the two halves stay
+                registered with each other as the handle moves. */}
             <div className="compare__after">
-              <div className="compare__afterMass" />
-              <div className="compare__centreline" />
-              <div className="compare__walkway" />
+              <CompareLayer image={after.image} alt={after.alt}>
+                <>
+                  <div className="compare__afterMass" />
+                  <div className="compare__centreline" />
+                  <div className="compare__walkway" />
+                </>
+              </CompareLayer>
               <span className="compare__tag compare__tag--after">After</span>
             </div>
 

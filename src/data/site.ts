@@ -334,6 +334,19 @@ export const mapMarkers: MapMarker[] = projects
   )
   .map((marker, index) => ({ ...marker, number: index + 1 }));
 
+/** The before/after wipe in §5. Leave an `image` off and that side falls
+ *  back to its drawn stand-in, exactly like the figures do. */
+export const transformation = {
+  before: {
+    image: "/images/transformation/before.jpg",
+    alt: "Corridor under construction: boundary wall going up and paving part-laid",
+  },
+  after: {
+    image: "/images/transformation/after.jpg",
+    alt: "The same corridor completed, lit at dusk with finished walkway and boundary wall",
+  },
+};
+
 export const themes: Theme[] = [
   {
     title: "Better Streets",
