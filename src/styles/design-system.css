@@ -102,8 +102,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: var(--font-headi
 .blueprint > .corner.br { bottom: -6px; right: -6px; }
 
 .duotone{position:relative;overflow:hidden}
-.duotone::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:var(--color-accent);mix-blend-mode:color}
+.duotone::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:color}
 
 /* ══════════════════════════════════════════════════════════════════════════
    Components — built with the tokens above. Plain CSS

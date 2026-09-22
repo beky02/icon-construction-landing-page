@@ -10,10 +10,12 @@ import { themes, transformation } from '../data/site';
 function CompareLayer({
   image,
   alt,
+  className,
   children,
 }: {
   image?: string;
   alt: string;
+  className?: string;
   children: ReactNode;
 }) {
   const [failed, setFailed] = useState(false);
@@ -22,7 +24,7 @@ function CompareLayer({
 
   return (
     <img
-      className="compare__img"
+      className={['compare__img', className].filter(Boolean).join(' ')}
       src={image}
       alt={alt}
       onError={() => setFailed(true)}
@@ -34,10 +36,9 @@ export function Transformation() {
   const [compare, setCompare] = useState(52);
   const { before, after } = transformation;
 
-  // Fed to the stylesheet rather than applied element by element, so the
-  // clip and the handle can never disagree about where the wipe sits.
+  // The comparison is a two-panel split rather than a reveal mask, so each
+  // image fills its half of the frame and the divider stays in sync.
   const wipe = {
-    '--after-clip': `${100 - compare}%`,
     '--after-pos': `${compare}%`,
   } as CSSProperties;
 
@@ -61,16 +62,15 @@ export function Transformation() {
 
         <div className="blueprint compare">
           <div className="compare__viewport" style={wipe}>
-            <CompareLayer image={before.image} alt={before.alt}>
-              <div className="compare__beforeMass" />
-            </CompareLayer>
-            <span className="compare__tag compare__tag--before">Before</span>
+            <div className="compare__before">
+              <CompareLayer image={before.image} alt={before.alt} className="compare__img--before">
+                <div className="compare__beforeMass" />
+              </CompareLayer>
+              <span className="compare__tag compare__tag--before">Before</span>
+            </div>
 
-            {/* Clipped from the right. Its picture is sized to the whole
-                viewport, not to the visible sliver, so the two halves stay
-                registered with each other as the handle moves. */}
             <div className="compare__after">
-              <CompareLayer image={after.image} alt={after.alt}>
+              <CompareLayer image={after.image} alt={after.alt} className="compare__img--after">
                 <>
                   <div className="compare__afterMass" />
                   <div className="compare__centreline" />
