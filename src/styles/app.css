@@ -75,7 +75,7 @@
 .siteNav {
   position: sticky; top: 0; z-index: 50;
   display: flex; align-items: center; gap: 28px;
-  padding: 14px var(--gutter);
+  padding: 4px var(--gutter);
   background: var(--paper-92);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--ink-14);
@@ -85,7 +85,7 @@
   margin-right: auto; text-decoration: none; color: var(--color-text);
 }
 .siteNav__logo {
-  display: block; width: 100px; height: 100px; object-fit: contain; flex: none;
+  display: block; width: 80px; height: 60px; object-fit: contain; flex: none;
 }
 .siteNav__brandName {
   font-family: var(--font-heading); font-weight: 600; font-size: 19px;
