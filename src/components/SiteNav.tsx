@@ -5,7 +5,7 @@ export function SiteNav() {
   return (
     <nav className="siteNav">
       <a className="siteNav__brand" href="#top">
-        <span className="siteNav__mark" aria-hidden="true" />
+        <img className="siteNav__logo" src="/images/logo/logo.png" alt="Icon Construction" />
         <span className="siteNav__brandName">Icon Construction</span>
       </a>
 
